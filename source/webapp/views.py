@@ -1,6 +1,6 @@
 from webapp.models import Task
 from django.shortcuts import redirect, get_object_or_404, render
-from webapp.models import STATUS_CHOICES
+from webapp.forms import TaskForm
 
 
 def index_view(request):
@@ -9,20 +9,18 @@ def index_view(request):
 
 
 def task_create_view(request):
-    options = STATUS_CHOICES
     if request.method == 'GET':
-        return render(request, 'add.html', {'options': options})
+        form = TaskForm()
+        return render(request, 'add.html', {'form': form})
     elif request.method == 'POST':
-        description = request.POST.get('description')
-        status = request.POST.get('status')
-        finish_date = request.POST.get('finish_date')
-        detailed_desc = request.POST.get('detailed_desc')
-        if not finish_date:
-            finish_date = None
-        if not detailed_desc:
-            detailed_desc = None
-        task = Task.objects.create(description=description, detailed_desc=detailed_desc, status=status, finish_date=finish_date)
-        return redirect(task_view, pk=task.pk)
+        form = TaskForm(data=request.POST)
+        if form.is_valid():
+            task = Task.objects.create(description=form.cleaned_data['description'], status=form.cleaned_data['status'],
+                                       detailed_desc=form.cleaned_data['detailed_desc'],
+                                       finish_date=form.cleaned_data['finish_date'])
+            return redirect(task_view, pk=task.pk)
+        else:
+            return render(request, 'add.html', {'form': form})
 
 
 def delete_view(request, id):
