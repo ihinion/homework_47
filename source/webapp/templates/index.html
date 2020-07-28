@@ -30,7 +30,8 @@
                         <p class="text-justify"><b>Description:</b> {{ task.description }}</p>
                         <form class="form-inline">
                             <a class="btn btn-primary btn-sm mr-3" href="{% url 'task_view' task.pk %}" role="button">Details</a>
-                            <a class="btn btn-danger btn-sm" href="{% url 'task_delete' task.pk %}" role="button">Delete</a>
+                            <a class="btn btn-danger btn-sm mr-3" href="{% url 'task_delete' task.pk %}" role="button">Delete</a>
+                            <a class="btn btn-secondary btn-sm" href="{% url 'task_update' task.pk %}" role="button">Update</a>
                         </form>
                     </div>
                 </div>
@@ -49,7 +50,8 @@
                             <p class="text-justify"><b>Description:</b> {{ task.description }}</p>
                             <form class="form-inline">
                                 <a class="btn btn-primary btn-sm mr-3" href="{% url 'task_view' task.pk %}" role="button">Details</a>
-                                <a class="btn btn-danger btn-sm" href="{% url 'task_delete' task.pk %}" role="button">Delete</a>
+                                <a class="btn btn-danger btn-sm mr-3" href="{% url 'task_delete' task.pk %}" role="button">Delete</a>
+                                <a class="btn btn-secondary btn-sm" href="{% url 'task_update' task.pk %}" role="button">Update</a>
                             </form>
                         </div>
                     </div>
@@ -69,7 +71,8 @@
                             <p class="text-justify"><b>Description:</b> {{ task.description }}</p>
                             <form class="form-inline">
                                 <a class="btn btn-primary btn-sm mr-3" href="{% url 'task_view' task.pk %}" role="button">Details</a>
-                                <a class="btn btn-danger btn-sm" href="{% url 'task_delete' task.pk %}" role="button">Delete</a>
+                                <a class="btn btn-danger btn-sm mr-3" href="{% url 'task_delete' task.pk %}" role="button">Delete</a>
+                                <a class="btn btn-secondary btn-sm" href="{% url 'task_update' task.pk %}" role="button">Update</a>
                             </form>
                         </div>
                     </div>
@@ -89,7 +92,8 @@
                             <p class="text-justify"><b>Description:</b> {{ task.description }}</p>
                             <form class="form-inline">
                                 <a class="btn btn-primary btn-sm mr-3" href="{% url 'task_view' task.pk %}" role="button">Details</a>
-                                <a class="btn btn-danger btn-sm" href="{% url 'task_delete' task.pk %}" role="button">Delete</a>
+                                <a class="btn btn-danger btn-sm mr-3" href="{% url 'task_delete' task.pk %}" role="button">Delete</a>
+                                <a class="btn btn-secondary btn-sm" href="{% url 'task_update' task.pk %}" role="button">Update</a>
                             </form>
                         </div>
                     </div>

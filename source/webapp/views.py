@@ -18,7 +18,7 @@ def task_create_view(request):
             task = Task.objects.create(description=form.cleaned_data['description'], status=form.cleaned_data['status'],
                                        detailed_desc=form.cleaned_data['detailed_desc'],
                                        finish_date=form.cleaned_data['finish_date'])
-            return redirect(task_view, pk=task.pk)
+            return redirect('task_view', pk=task.pk)
         else:
             return render(request, 'add.html', {'form': form})
 
@@ -34,3 +34,26 @@ def delete_view(request, id):
 def task_view(request, pk):
     task = get_object_or_404(Task, pk=pk)
     return render(request, 'task_view.html', {'task': task})
+
+
+def task_update_view(request, pk):
+    task = get_object_or_404(Task, pk=pk)
+    if request.method == 'GET':
+        form = TaskForm(data={
+            'description': task.description,
+            'detailed_desc': task.detailed_desc,
+            'status': task.status,
+            'finish_date': task.finish_date,
+        })
+        return render(request, 'update.html', context={'form': form, 'task': task})
+    elif request.method == 'POST':
+        form = TaskForm(data=request.POST)
+    if form.is_valid():
+        task.description = form.cleaned_data['description']
+        task.detailed_desc = form.cleaned_data['detailed_desc']
+        task.status = form.cleaned_data['status']
+        task.finish_date = form.cleaned_data['finish_date']
+        task.save()
+        return redirect(task_view, pk=task.pk)
+    else:
+        return render(request, 'update.html', context={'form': form, 'task': task})

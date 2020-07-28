@@ -19,6 +19,7 @@
 {{ task.detailed_desc }}{% endif %}</p>
         <a href="{% url 'index' %}" class="btn btn-primary">Back to index</a>
         <a class="btn btn-danger" href="{% url 'task_delete' task.pk %}" role="button">Delete</a>
+        <a class="btn btn-success" href="{% url 'task_update' task.pk %}">Update</a>
     </div>
 </div>
 {% endblock %}
