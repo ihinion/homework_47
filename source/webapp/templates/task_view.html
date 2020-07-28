@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}Task #{{ task.pk }} {% endblock %}
+{% block nav %}
+<nav class="navbar navbar-dark bg-primary mb-5">
+    <a class="navbar-brand font-weight-bold" href="{% url 'index' %}">To-Do LIST</a>
+    <a class="navbar-brand font-weight-bold" href="{% url 'task_create' %}">ADD NEW</a>
+</nav>
+{% endblock %}
+{% block content %}
+<div class="card">
+    <div class="card-header">
+        <b>Task: {{ task.pk }}</b> | Finished: {% if task.finish_date is not None %} {{ task.finish_date }}
+    {% endif %}
+    </div>
+    <div class="card-body">
+        <h5 class="card-title"><b>Description:</b> {{ task.description }}</h5>
+        <p class="card-text preserve-format"><b>Detailed description:</b> {% if task.detailed_desc is not None %}
+{{ task.detailed_desc }}{% endif %}</p>
+        <a href="{% url 'index' %}" class="btn btn-primary">Back to index</a>
+        <a class="btn btn-danger" href="{% url 'task_delete' task.pk %}" role="button">Delete</a>
+    </div>
+</div>
+{% endblock %}
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
+</body>
+</html>

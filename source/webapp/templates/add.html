@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title %}Add task{% endblock %}
+{% block content %}
+<h2 class="my-3">Create task</h2>
+        <form action="{% url 'task_create' %}" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+            <label>Status:</label>
+            <select class="custom-select" name="status" required>
+                {% for option in options %}
+                        <option value="{{ option.0 }}"
+                                {% if option.0 == 'new' %}selected{% endif %}>{{ option.1 }}</option>
+                {% endfor %}
+            </select>
+            </div>
+            <div class="form-group">
+            <label>Description:</label>
+            <textarea class="form-control" name="description" rows="2" required></textarea>
+            </div>
+            <div class="form-group">
+            <label>Detailed description:</label>
+            <textarea class="form-control" name="detailed_desc" rows="4"></textarea>
+            </div>
+            <div class="form-group">
+            <label>Finished:</label>
+            <input class="form-control" type="text" name="finish_date" placeholder="YYYY-mm-dd"/>
+            </div>
+            <input class="btn btn-primary" type="submit" value="Submit">
+            <a class="btn btn-secondary" href="{% url 'index' %}" role="button">Home</a>
+
+        </form>
+{% endblock %}
