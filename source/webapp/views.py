@@ -57,3 +57,15 @@ def task_update_view(request, pk):
         return redirect(task_view, pk=task.pk)
     else:
         return render(request, 'update.html', context={'form': form, 'task': task})
+
+
+def admin_delete_view(request):
+    tasks = Task.objects.all()
+    if request.method == 'GET':
+        return render(request, 'admin_delete.html', {'tasks': tasks})
+    elif request.method == 'POST':
+        selected_tasks = request.POST.getlist('pk')
+        for pk in selected_tasks:
+            task = get_object_or_404(Task, id=pk)
+            task.delete()
+        return redirect('index')
