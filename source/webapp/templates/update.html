@@ -5,7 +5,7 @@
     <h2 class="my-3">Update task</h2>
     <form action="{% url 'task_update' task.pk %}" method="post">
         {% include 'partial/task_form.html' with button_text='Update' %}
-        <a class="btn btn-secondary" href="{% url 'task_view' task.pk %}" role="button">Back to task</a>
+        <a class="btn btn-warning" href="{% url 'task_view' task.pk %}" role="button">View task</a>
     </form>
 </div>
 {% endblock %}

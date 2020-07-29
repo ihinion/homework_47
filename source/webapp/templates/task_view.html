@@ -15,8 +15,8 @@
     </div>
     <div class="card-body">
         <h5 class="card-title"><b>Description:</b> {{ task.description }}</h5>
-        <p class="card-text preserve-format"><b>Detailed description:</b> {% if task.detailed_desc is not None %}
-{{ task.detailed_desc }}{% endif %}</p>
+        <p class="card-text"><b>Detailed description:</b> {% if task.detailed_desc is not None %}
+{{ task.detailed_desc|linebreaks }}{% endif %}</p>
         <a href="{% url 'index' %}" class="btn btn-primary">Back to index</a>
         <a class="btn btn-danger" href="{% url 'task_delete' task.pk %}" role="button">Delete</a>
         <a class="btn btn-success" href="{% url 'task_update' task.pk %}">Update</a>
