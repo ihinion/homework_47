@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="form-group mt-4">
+    <form method="post">{% csrf_token %}
+    <h3>Admin delete tool</h3>
+    {% for task in tasks %}
+        <div class="custom-control custom-checkbox my-3">
+          <input type="checkbox" name="pk" class="custom-control-input" id="{{ task.pk }}" value="{{ task.pk }}">
+          <label class="custom-control-label" for="{{ task.pk }}">Task {{ task.pk }}</label>
+        </div>
+    {% endfor %}
+    <input class="btn btn-danger" type="submit" value="Delete">
+    </form>
+    </div>
+{% endblock %}
