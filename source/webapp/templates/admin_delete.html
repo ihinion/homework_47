@@ -1,16 +1,21 @@
 {% extends 'base.html' %}
+{% block title %}Delete tasks{% endblock %}
+{% block nav %}
+    <nav class="navbar navbar-dark bg-primary">
+        <a class="navbar-brand font-weight-bold" href="{% url 'index' %}">To-Do List</a>
+    </nav>
+{% endblock %}
 {% block content %}
-    <div class="form-group mt-4">
+    <h3 class="my-3 ml-4">Admin delete tool</h3>
     <form method="post">{% csrf_token %}
-    <h3>Admin delete tool</h3>
-    {% for task in tasks %}
-        <div class="custom-control custom-checkbox my-3">
-          <input type="checkbox" name="pk" class="custom-control-input" id="{{ task.pk }}" value="{{ task.pk }}">
-          <label class="custom-control-label" for="{{ task.pk }}">Task {{ task.pk }}</label>
-        </div>
-    {% endfor %}
-    <input class="btn btn-danger" type="submit" value="Delete">
-    <a class="btn btn-primary" href="{% url 'index' %}" role="button">Cancel</a>
+        {% for task in tasks %}
+            <div class="custom-control custom-checkbox my-3">
+                <input type="checkbox" name="pk" class="custom-control-input" id="{{ task.pk }}" value="{{ task.pk }}">
+                <label class="custom-control-label" for="{{ task.pk }}"><strong>&nbsp{{ task.pk }}.</strong>
+                    {{ task.description }}</label>
+            </div>
+        {% endfor %}
+        <input class="btn btn-danger" type="submit" value="Delete selected">
+        <a class="btn btn-primary" href="{% url 'index' %}">Home</a>
     </form>
-    </div>
 {% endblock %}
