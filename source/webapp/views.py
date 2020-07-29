@@ -48,15 +48,15 @@ def task_update_view(request, pk):
         return render(request, 'update.html', context={'form': form, 'task': task})
     elif request.method == 'POST':
         form = TaskForm(data=request.POST)
-    if form.is_valid():
-        task.description = form.cleaned_data['description']
-        task.detailed_desc = form.cleaned_data['detailed_desc']
-        task.status = form.cleaned_data['status']
-        task.finish_date = form.cleaned_data['finish_date']
-        task.save()
-        return redirect(task_view, pk=task.pk)
-    else:
-        return render(request, 'update.html', context={'form': form, 'task': task})
+        if form.is_valid():
+            task.description = form.cleaned_data['description']
+            task.detailed_desc = form.cleaned_data['detailed_desc']
+            task.status = form.cleaned_data['status']
+            task.finish_date = form.cleaned_data['finish_date']
+            task.save()
+            return redirect(task_view, pk=task.pk)
+        else:
+            return render(request, 'update.html', context={'form': form, 'task': task})
 
 
 def admin_delete_view(request):
