@@ -8,5 +8,4 @@ class TaskForm(forms.Form):
     detailed_desc = forms.CharField(max_length=1500, required=False, label='Detailed description',
                                     widget=widgets.Textarea)
     status = forms.ChoiceField(required=True, label='Status', choices=STATUS_CHOICES, initial=STATUS_CHOICES[0][0])
-    finish_date = forms.DateField(required=False, label='Finish date', widget=forms.DateInput(attrs={
-        'placeholder': 'YYYY-MM-DD'}))
+    finish_date = forms.DateField(required=False, label='Finish date', widget=forms.DateInput)

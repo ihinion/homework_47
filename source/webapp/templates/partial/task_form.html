@@ -7,7 +7,11 @@
     {% for error in field.errors %}
         <p class="form-error">{{ error }}</p>
     {% endfor %}
-    <p>{{ field|add_class:'form-control' }}</p>
+    {% if field.name == 'finish_date' %}
+        <p>{{ field|add_class:'form-control'|attr:'placeholder:YYYY-MM-DD' }}</p>
+    {% else %}
+        <p>{{ field|add_class:'form-control' }}</p>
+    {% endif %}
 {% endfor %}
 <input class="btn btn-primary" type="submit" value="{{ button_text }}">
 <a class="btn btn-secondary" href="{% url 'index' %}" role="button">Home</a>

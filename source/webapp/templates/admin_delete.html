@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
-{% block title %}Delete tasks{% endblock %}
+{% block title %}Delete panel{% endblock %}
 {% block nav %}
     <nav class="navbar navbar-dark bg-primary">
         <a class="navbar-brand font-weight-bold" href="{% url 'index' %}">To-Do List</a>
     </nav>
 {% endblock %}
 {% block content %}
-    <h3 class="my-3 ml-4">Admin delete tool</h3>
+    <h3 class="my-3 ml-4">Delete multiple tasks</h3>
     <form method="post">{% csrf_token %}
         {% for task in tasks %}
             <div class="custom-control custom-checkbox my-3">
